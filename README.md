@@ -14,3 +14,5 @@ The transmitter module reads the values each of the 7 buttons & volume knob, and
 The transmitter module is based on an NEC uPD652C 4-bit microcomputer. 1kbyte ROM, 32 word RAM. It reads & converts the buttons to 12-bit long serial strings, which flash an IR LED in the slip ring assembly. 
 
 The head amplifier is based on an NEC uPC1251 op-amp and phototransistor. Output is made by pulling down the external data line to the reciever assembly. The reciever contains the pullup for this data line. 
+
+The goal of this project is to replace the reciever assembly. The replacement reciever should be able to control the ASCD (4x 12V active high outputs), and make all outputs available over CAN. Maybe some other SWC outputs? This has been a sticking point in the Z31 community for ages, since there are no available kits to retain SWC with a modern head unit. 
