@@ -24,17 +24,17 @@ Bits 7-11: Volume Control
 
 The actual buttons are:
 Cruise Buttons (1-3):
-None	: 101
-Resume	: 011
-Accel	: 010
-Set		: 100
+* None	: 101
+* Resume	: 011
+* Accel	: 010
+* Set		: 100
 
 Media Buttons (4-6):
-None	: 000
-SW		: 001
-Tape	: 010
-FM/AM	: 100
-Scan	: 011
+* None	: 000
+* SW		: 001
+* Tape	: 010
+* FM/AM	: 100
+* Scan	: 011
 
 
 The head amplifier is based on an NEC uPC1251 op-amp and phototransistor. Output is made by pulling down the external data line to the reciever assembly. The reciever contains the pullup for this data line. 
