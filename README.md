@@ -13,16 +13,19 @@ The transmitter module reads the values each of the 7 buttons & volume knob, and
 
 The transmitter module is based on an NEC uPD652C 4-bit microcomputer. 1kbyte ROM, 32 word RAM. It reads & converts the buttons to 12-bit long serial strings, which flash an IR LED in the slip ring assembly. Bit widths are 1ms. 
 
+
 As I capture them, the frames are laid out as follows:
+
 0-11, from L->R
 
 Resting State: 0101000XXXXX
-Bit 0    : Start of Frame, Always Low ("0" here)
-Bits 1-3 : Cruise Controls
-Bits 4-6 : Media Controls
-Bits 7-11: Volume Control
+* Bit 0    : Start of Frame, Always Low ("0" here)
+* Bits 1-3 : Cruise Controls
+* Bits 4-6 : Media Controls
+* Bits 7-11: Volume Control
 
 The actual buttons are:
+
 Cruise Buttons (1-3):
 * None	: 101
 * Resume	: 011
