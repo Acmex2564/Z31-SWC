@@ -1,0 +1,19 @@
+L->R, 0-11
+
+Bit 0: Start
+Bit 1:3: Cruise Controls
+Bit 4:6: Media Controls
+Bit 7:11: Volume Pot
+
+Cruise Buttons:
+None	: 101
+Resume	: 011
+Accel	: 010
+Set		: 100
+
+Media Buttons:
+None	: 000
+SW		: 001
+Tape	: 010
+FM/AM	: 100
+Scan	: 011
