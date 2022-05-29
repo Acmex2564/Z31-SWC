@@ -1,4 +1,4 @@
-19827010712855199
+19838549148621917
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -56973,6 +56973,13 @@ ESP8266 WiFi microcontroller
 16
 16
 Molex_34826
+0348260120
+
+
+0
+14
+12
+Molex_34826
 0348260160
 
 
@@ -73829,6 +73836,20 @@ MEGA2560PRO
 86
 86
 Personal
+Proto-Area
+
+
+0
+252
+3
+Personal
+Proto_20x20
+
+
+0
+400
+20
+Personal
 SAFCM_Conn
 
 
@@ -73843,12 +73864,40 @@ TE-172023
 36
 36
 Personal
+TE-172023_Reverse_Number
+
+
+0
+36
+36
+Personal
 TE-172241
 
 
 0
 28
 28
+Personal
+Z31_15p_ECU
+
+
+0
+15
+15
+Personal
+Z31_ECU_Breakout_1
+
+
+0
+48
+16
+Personal
+Z31_ECU_Breakout_2
+
+
+0
+60
+20
 Personal
 Z31_HVAC_Connector_1
 
