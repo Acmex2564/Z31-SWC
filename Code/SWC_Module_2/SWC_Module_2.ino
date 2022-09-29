@@ -2,6 +2,7 @@
 #include <SPI.h>
 #include <avr/interrupt.h>
 #include <avr/sleep.h>
+#include <avr/wdt.h>
 
 #define INPUT_PIN 2
 //#define LED_PIN 13
@@ -70,6 +71,7 @@ int histSum[3] = { defaultCruise * HISTORY_COUNT, defaultMedia * HISTORY_COUNT, 
 const int interval_max_ign = 10 * 1000;
 long timeLastIgn;
 long timeLastCan;
+boolean broadcast = false;
 
 const int interval_swc_repeat = 500;
 long timeLastSwc;
@@ -120,6 +122,7 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(INPUT_PIN), interrupt_svc, FALLING);
   digitalWrite(SWC_POWER, HIGH);
 
+  wdt_enable(WDTO_8S);
   Serial.println("Awaiting SWC");
 }
 
@@ -191,6 +194,14 @@ void loop() {
       poweroff();
     }
 
+    if (millis() - timeLastIgn < interval_max_ign/2) {
+      broadcast = true;
+    }
+    else {
+      broadcast = false;
+    }
+      
+
     if (stateValidButtons) {
 
       histSum[0] = (histSum[0] - history[0][histCounter]) + stateCruise;
@@ -232,12 +243,13 @@ void loop() {
       }
 
 
-      if ((txBufSWC[0] != lastBufSWC[0]) || (txBufSWC[1] != lastBufSWC[1]) || (txBufSWC[2] != lastBufSWC[2]) || (millis() - timeLastSwc > interval_swc_repeat))
+      if (((txBufSWC[0] != lastBufSWC[0]) || (txBufSWC[1] != lastBufSWC[1]) || (txBufSWC[2] != lastBufSWC[2]) || (millis() - timeLastSwc > interval_swc_repeat)) && broadcast)
       {
         if (CAN0.sendMsgBuf(SWC_ID, 0, 3, txBufSWC) == CAN_OK) {
           lastBufSWC[0] = txBufSWC[0];
           lastBufSWC[1] = txBufSWC[1];
           lastBufSWC[2] = txBufSWC[2];
+          timeLastSwc = millis();
         }
         else {
           Serial.println("Tx SWC Failure");
@@ -291,7 +303,7 @@ void loop() {
           Serial.print(msgString);
         }
         Serial.println();
-
+                
         if (rxBuf[0] == 0xFE) {
           analogWrite(AUX_OUT_2, 0xFF);
         }
@@ -302,7 +314,7 @@ void loop() {
       }
     }
   }
-
+wdt_reset();
 }
 
 void poweroff() {
