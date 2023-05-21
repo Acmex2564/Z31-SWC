@@ -129,7 +129,7 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   timeCurrent = micros();
-
+  //Serial.println(((analogRead(MODULE_VOLTAGE)*5/1023.0 * ((35.7+90) / 35.7))));
 
   if (servicing) {
 
@@ -186,7 +186,7 @@ void loop() {
 
   //canbus shit goes here
   else {
-    if ((analogRead(MODULE_VOLTAGE)*5/1023.0 * ((35.7+150) / 35.7)) > 5.0) {
+    if ((analogRead(MODULE_VOLTAGE)*5/1023.0 * ((35.7+90) / 35.7)) > 10.0) {
       timeLastIgn = millis(); 
     }
 
@@ -230,11 +230,11 @@ void loop() {
       }
       else
       {
-        Serial.println("History Mismatch.");
-        Serial.print(stateVolume); Serial.println(histSum[2] / HISTORY_COUNT);
-        Serial.print(stateMedia); Serial.println(histSum[1] / HISTORY_COUNT);
-        Serial.print(stateCruise); Serial.println(histSum[0] / HISTORY_COUNT);
-        Serial.println();
+        //Serial.println("History Mismatch.");
+        //Serial.print(stateVolume); Serial.println(histSum[2] / HISTORY_COUNT);
+        //Serial.print(stateMedia); Serial.println(histSum[1] / HISTORY_COUNT);
+        //Serial.print(stateCruise); Serial.println(histSum[0] / HISTORY_COUNT);
+        //Serial.println();
 
         txBufSWC[1] = defaultMedia;
         txBufSWC[2] = defaultCruise;
@@ -255,6 +255,7 @@ void loop() {
           Serial.println("Tx SWC Failure");
           Serial.println(CAN0.sendMsgBuf(SWC_ID, 0, 3, txBufSWC));
         }
+        
       }
 
       if (stateCruise == defaultCruise) {
@@ -322,9 +323,9 @@ void poweroff() {
   digitalWrite(SWC_POWER, LOW);
   CAN0.setGPO(0b00000001);
   delay(1000);
-  set_sleep_mode(SLEEP_MODE_PWR_DOWN);
-  cli();
-  sleep_mode();
+  //set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+  //cli();
+  //sleep_mode();
 }
 
 void interrupt_svc() {
